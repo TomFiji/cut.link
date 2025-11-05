@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Scissors icon integrated into design -->
+  <g transform="translate(20, 30)">
+    <!-- Top blade -->
+    <ellipse cx="15" cy="15" rx="12" ry="12" fill="url(#gradient1)" opacity="0.9"/>
+    <ellipse cx="15" cy="15" rx="6" ry="6" fill="white"/>
+    <path d="M 15 15 L 50 45" stroke="url(#gradient1)" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Bottom blade -->
+    <ellipse cx="15" cy="55" rx="12" ry="12" fill="url(#gradient2)" opacity="0.9"/>
+    <ellipse cx="15" cy="55" rx="6" ry="6" fill="white"/>
+    <path d="M 15 55 L 50 45" stroke="url(#gradient2)" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Pivot point -->
+    <circle cx="50" cy="45" r="5" fill="#1e293b"/>
+  </g>
+  
+  <!-- "cut" text with modern geometric font -->
+  <text x="90" y="72" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" fill="url(#gradient1)" letter-spacing="-2">
+    cut
+  </text>
+  
+  <!-- Dashed line suggesting a "cut" -->
+  <line x1="215" y1="60" x2="225" y2="60" stroke="#94a3b8" stroke-width="3" stroke-dasharray="5,5" stroke-linecap="round"/>
+  
+  <!-- "link" text -->
+  <text x="232" y="72" font-family="Arial Black, sans-serif" font-size="52" font-weight="700" fill="#1e293b" letter-spacing="-2">
+    link
+  </text>
+  
+  <!-- Subtle underline accent -->
+  <rect x="90" y="80" width="70" height="3" fill="url(#gradient2)" opacity="0.6" rx="1.5"/>
+</svg>

@@ -13,11 +13,16 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.79.0",
     "claude": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "geoip-lite": "^1.4.10",
     "nodemon": "^3.1.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.5",
-    "supabase": "^2.54.11"
+    "supabase": "^2.54.11",
+    "useragent": "^2.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { supabase } from '../config/supabase.js';
+import { supabase } from '../../services/supabase.jsx';
 import { useNavigate, Link } from 'react-router-dom';
 import PersonLogo from '../../assets/person.svg'
 import LockLogo from '../../assets/lock.svg'
 import EmailLogo from '../../assets/email_symbol.svg'
-import LockOpenLogo from '../../assets/lock_open.svg'
 import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'
 
@@ -73,7 +72,7 @@ function Signup() {
                     first_name: firstName,
                     last_name: lastName
                 },
-                emailRedirectTo: `${import.meta.env.VITE_APP_URL}/verify-email`
+                emailRedirectTo: `${import.meta.env.VITE_APP_URL}`
             }
         })
         console.log("User data: ", data)

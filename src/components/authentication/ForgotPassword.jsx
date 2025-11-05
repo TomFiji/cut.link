@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../config/supabase";
+import { supabase } from '../../services/supabase.jsx';
 import EmailLogo from '../../assets/email_symbol.svg'
-import ProfitTrackLogo from '../../assets/profittrack-logo.svg'
+import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'
 
 
@@ -18,7 +18,7 @@ function ForgotPassword(){
 
     return(
          <div className='body'>
-            <img class='logo' src={ProfitTrackLogo} />
+            <img class='logo' src={CutLinkLogo} />
             <div className='sign-up-div'>
                 <h1>Reset your Password</h1>
                 <form onSubmit={resetPassword} className='sign-up'>

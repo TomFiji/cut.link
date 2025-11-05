@@ -1,8 +1,8 @@
-import { useState, useEffect, useNavig } from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { supabase } from "../config/supabase";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../../services/supabase.jsx';
 import LockLogo from '../../assets/lock.svg'
-import ProfitTrackLogo from '../../assets/profittrack-logo.svg'
+import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'
 
 

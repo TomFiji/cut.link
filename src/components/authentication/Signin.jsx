@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { supabase } from '../config/supabase.js';
+import { supabase } from '../../services/supabase.jsx';
 import { useNavigate, Link } from 'react-router-dom';
-import { useExpenseContext } from '../../contexts/ExpenseContext.jsx';
 import LockLogo from '../../assets/lock.svg'
 import EmailLogo from '../../assets/email_symbol.svg'
-import ProfitTrackLogo from '../../assets/profittrack-logo.svg'
+import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'
 
 
@@ -51,7 +50,7 @@ function Signin(){
     return(
             <div className='body'>
              <div className='sign-up-div'>
-                <img class='logo' src={ProfitTrackLogo} />
+                <img class='logo' src={CutLinkLogo} />
                     <h1>Log in</h1>
                     <form onSubmit={handleSignin} className='sign-up'>
                         

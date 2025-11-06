@@ -48,7 +48,7 @@ function Home() {
                 />
                 <button type='button' onClick={convertUrl} className='convert-button'>Convert</button>
             </form>
-            <output id='short-url'>{shortUrl}</output>
+            <output id='short-url'><a>{shortUrl}</a></output>
         </div>
     )
 }

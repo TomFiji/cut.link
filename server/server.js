@@ -44,7 +44,7 @@ app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
         if (error) { throw error }
         const id = data.id;
         const shortCode = encodeBase62(id)
-        const shortUrl = `${process.env.FRONTEND_URL}/${shortCode}`
+        const shortUrl = `${process.env.VITE_API_URL}/${shortCode}`
         const { data: updatedData, error: updateError } = await supabase
             .from("links")
             .update({
@@ -73,6 +73,10 @@ app.get('/:shortCode', async(req, res) => {
             .single()
 
         if (error || !data) { throw error || "URL not found"}
+        supabase
+            .rpc('increment_clicks', { short_code_param: shortCode })
+            .then(() => {})
+            .catch(err => console.error('Failed to increment clicks:', err));
         logClick(data.id, req).catch(error =>
             console.error('Click logging failed: ', error)
         )

@@ -26,7 +26,7 @@ function encodeBase62(n){
     }
 
 app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
-    const { long_url, description } = req.body
+    const { long_url } = req.body
 
     if (!long_url){
         return res.status(400).json({ error: "Must input a url" })
@@ -38,7 +38,6 @@ app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
             .insert({
                 user_id: req.user.id,
                 long_url: long_url,
-                description: description,
             })
             .select()
             .single()
@@ -46,21 +45,18 @@ app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
         const id = data.id;
         const shortCode = encodeBase62(id)
         const shortUrl = `${process.env.FRONTEND_URL}/${shortCode}`
-        const { error: updateError } = await supabase
+        const { data: updatedData, error: updateError } = await supabase
             .from("links")
             .update({
                 short_code: shortCode,
                 short_url: shortUrl
             })
             .eq('id', id)
+            .select()
+            .single()
         if (updateError) throw updateError
-        
-        res.status(201).json({
-            success: true,
-            shortUrl: shortUrl,
-            shortCode: shortCode,
-            originalUrl: long_url
-        })
+
+        res.status(201).json(updatedData)
     }catch(error){
         console.log('Error creating short url: ', error)
         res.status(500).json({ error: 'Database error' });

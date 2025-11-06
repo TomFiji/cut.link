@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from '../../services/supabase.jsx';
+import { supabase } from '../../services/supabase.js';
 import EmailLogo from '../../assets/email_symbol.svg'
 import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'

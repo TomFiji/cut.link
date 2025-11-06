@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../../services/supabase.jsx';
+import { supabase } from '../../services/supabase.js';
 import LockLogo from '../../assets/lock.svg'
 import CutLinkLogo from '../../assets/cut-link-logo.svg'
 import '../../css/Signup.css'

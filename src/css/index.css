@@ -5,7 +5,9 @@
 
   color-scheme: light dark;
   color: black;
-  background-color: white;
+  background-color: #EFECE3;
+  --accent-color: #4A70A9;
+  --input-color: #8FABD4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

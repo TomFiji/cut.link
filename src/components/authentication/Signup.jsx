@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../../services/supabase.jsx';
+import { supabase } from '../../services/supabase.js';
 import { useNavigate, Link } from 'react-router-dom';
 import PersonLogo from '../../assets/person.svg'
 import LockLogo from '../../assets/lock.svg'

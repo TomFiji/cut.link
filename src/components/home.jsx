@@ -33,6 +33,26 @@ function Home() {
         }
     }
 
+    const getAllUrls = async () => {
+        try{
+            const { data: { session } } = await supabase.auth.getSession();
+            if(!session) throw new Error('No active session');
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/urls/allUrls`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`,
+
+                },
+            });
+            if(!response.ok) throw new Error('Failed to shorten url');
+            const data = await response.json();
+            console.log("Data: ", data)
+        }catch(error){
+            console.error('Error shortening url: ', error);
+        }
+    }
+
     return(
         <div className="home">
             <h1><img src={cutlinkLogo}></img></h1>
@@ -48,6 +68,7 @@ function Home() {
                 />
                 <button type='button' onClick={convertUrl} className='convert-button'>Convert</button>
             </form>
+            <button type='button' onClick={getAllUrls} className='convert-button'>All URLs</button>
             <output id='short-url'><a>{shortUrl}</a></output>
         </div>
     )

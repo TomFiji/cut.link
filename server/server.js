@@ -77,7 +77,7 @@ app.get('/:shortCode', async(req, res) => {
             .rpc('increment_clicks', { short_code_param: shortCode })
             .then(() => {})
             .catch(err => console.error('Failed to increment clicks:', err));
-        logClick(data.id, req).catch(error =>
+        logClick(shortCode, req).catch(error =>
             console.error('Click logging failed: ', error)
         )
         res.redirect(302, data.long_url)

@@ -23,29 +23,31 @@ async function logClick(shortCode, req) {
   const botPatterns = /bot|crawler|spider|crawling|googlebot|bingbot/i;
   const isBot = botPatterns.test(ua);
   
-  const clickData = {
-    short_code: shortCode,
-    clicked_at: new Date(),
-    user_agent: req.headers['user-agent'] || null,
-    referrer: req.headers['referer'] || null,
-    ip_address: ip,
-    
-    // Parsed data
-    browser: agent.family || null,           // "Chrome", "Firefox", etc.
-    device_type: deviceType,
-    os: agent.os.family || null,             // "Windows", "iOS", etc.
-    
-    // Geolocation
-    country: geo?.country || null,           // "US", "GB", etc.
-    city: geo?.city || null,                 // "New York", "London", etc.
-    
-    // Bot detection
-    is_bot: isBot
-  };
-  
-  await supabase
+  const {data, error} = await supabase
     .from('clicks')
-    .insert([clickData]);
+    .insert({
+      url_id: shortCode,
+      clicked_at: new Date(),
+      user_agent: req.headers['user-agent'] || null,
+      referrer: req.headers['referer'] || null,
+      ip_address: ip,
+      
+      // Parsed data
+      browser: agent.family || null,           // "Chrome", "Firefox", etc.
+      device_type: deviceType,
+      os: agent.os.family || null,             // "Windows", "iOS", etc.
+      
+      // Geolocation
+      country: geo?.country || null,           // "US", "GB", etc.
+      city: geo?.city || null,                 // "New York", "London", etc.
+      
+      // Bot detection
+      is_bot: isBot
+    })
+    .select()
+  if (error) {throw error || "Could not add click"}
+  else {"Click added: ", data}
 }
+
 
 export default logClick

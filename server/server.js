@@ -73,7 +73,7 @@ app.get('/:shortCode', async(req, res) => {
             .single()
 
         if (error || !data) { throw error || "URL not found"}
-        supabase
+        await supabase
             .rpc('increment_clicks', { short_code_param: shortCode })
             .then(() => {})
             .catch(err => console.error('Failed to increment clicks:', err));

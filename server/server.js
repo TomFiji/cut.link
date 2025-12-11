@@ -87,7 +87,7 @@ app.get('/:shortCode', async(req, res) => {
     }
 })
 
-app.get('/api/urls/allUrls'), authenticateUser, async(req, res) =>{
+app.get('/api/urls/allUrls', authenticateUser, async(req, res) =>{
     try{
         const { data, error } = await supabase
             .from('links')
@@ -95,11 +95,12 @@ app.get('/api/urls/allUrls'), authenticateUser, async(req, res) =>{
             .eq('user_id', req.user.id)
         if (error) { throw error || "Error getting your urls"}
         res.json(data)
+        
     }catch(error){
         console.error('Error getting all your expenses: ', error);
         res.status(500).json({ error: 'Database error' })
     }
-}
+})
 
 
 

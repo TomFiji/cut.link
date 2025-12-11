@@ -37,6 +37,7 @@ function Home() {
         try{
             const { data: { session } } = await supabase.auth.getSession();
             if(!session) throw new Error('No active session');
+            console.log(session)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/urls/allUrls`, {
                 method: 'GET',
                 headers: {
@@ -44,12 +45,12 @@ function Home() {
                     'Authorization': `Bearer ${session.access_token}`,
 
                 },
-            });
-            if(!response.ok) throw new Error('Failed to shorten url');
+            })
+            if(!response.ok) throw new Error("This is what you're seeing");
             const data = await response.json();
             console.log("Data: ", data)
         }catch(error){
-            console.error('Error shortening url: ', error);
+            console.error('Error fetching all urls: ', error);
         }
     }
 

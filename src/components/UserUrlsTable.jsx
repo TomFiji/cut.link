@@ -35,7 +35,7 @@ function UserUrlsTable(){
     const rows = urls.map((element) => (
     <Table.Tr key={element.id}>
         <Table.Td>{element.description}</Table.Td>
-        <Table.Td>{element.short_url}</Table.Td>
+        <Table.Td><a href={element.short_url} target="_blank" rel="noopener noreferrer">{element.short_url}</a></Table.Td>
         <Table.Td>{element.clicks}</Table.Td>
         <Table.Td>{format(new Date(element.created_at), 'MM/dd/yyyy')}</Table.Td>
     </Table.Tr>
@@ -46,6 +46,9 @@ function UserUrlsTable(){
     }, [])
 
     return(
+    <>
+    <h1> Your Links </h1>
+    <br />  
     <ScrollArea className={classes.scrollArea} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
         <Table miw={700} className={classes.table}>
             <Table.Thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
@@ -60,6 +63,7 @@ function UserUrlsTable(){
             <Table.Tbody>{rows}</Table.Tbody>
         </Table>
     </ScrollArea>
+    </>
     )
 }
 

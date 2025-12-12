@@ -1,14 +1,21 @@
 import {useState } from 'react';
 import { supabase } from '../services/supabase.js'
 import cutlinkLogo from '../assets/cut-link-logo.svg'
+import { useNavigate } from 'react-router-dom';
 import '../css/Home.css'
 
 function Home() {
+    const navigate = useNavigate();
     const [longUrl, setLongUrl] = useState("")
     const [shortUrl, setShortUrl] = useState("")
+    const [description, setDescription] = useState("")
 
     const handleChange = (e) => {
         setLongUrl(e.target.value)
+    }
+
+    const handleDescriptionChange = (e) => {
+        setDescription(e.target.value)
     }
 
     const convertUrl = async () => {
@@ -22,7 +29,7 @@ function Home() {
                     'Authorization': `Bearer ${session.access_token}`,
 
                 },
-                body: JSON.stringify({ long_url: longUrl })
+                body: JSON.stringify({ long_url: longUrl, description: description })
             });
             if(!response.ok) throw new Error('Failed to shorten url');
             const data = await response.json();
@@ -39,17 +46,17 @@ function Home() {
             <label className="url-input-label" for="url-input">Enter the link you'd like to shorten: </label>
             <form className='url-form'>
                 
-                <input 
+                <input
                     type="url"
                     className="url-input"
                     id='url-input'
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                
                 <button type='button' onClick={convertUrl} className='convert-button'>Convert</button>
             </form>
-            <button type='button' onClick={getAllUrls} className='convert-button'>All URLs</button>
-            <output id='short-url'><a>{shortUrl}</a></output>
+            <output id='short-url'>{shortUrl && <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>}</output>
         </div>
     )
 }

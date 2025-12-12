@@ -6,6 +6,7 @@ import VerifyEmailPage from './pages/VerifyEmail';
 import ForgotPasswordPage from './pages/ForgotPassword';
 import ConfirmPasswordsPage from './pages/ConfirmPasswords';
 import AllUrlsPage from './pages/AllUrls';
+import Header from './components/Header'
 import {Routes, Route, useLocation} from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import '@mantine/core/styles.css';
@@ -13,10 +14,15 @@ import { MantineProvider } from '@mantine/core';
 
 
 function App() {
-
+  const location = useLocation();
+  
+  //Pages where navbar should be hidden
+  const noShowHeaderRoutes = ['/signup', '/signin', '/verify-email', '/error', '/forgot-password', '/confirm-passwords']
+  const shouldShowHeader = !noShowHeaderRoutes.includes(location.pathname);
   return (
     <MantineProvider>
       <div className="app-shell">
+        {shouldShowHeader && <Header />}
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />}/>

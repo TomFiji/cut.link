@@ -1,0 +1,56 @@
+.header {
+  position: sticky;
+  top: 0;
+  background-color: var(--mantine-color-body);
+  transition: box-shadow 150ms ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-3));
+  }
+}
+
+.scrolled {
+  box-shadow: var(--mantine-shadow-sm);
+}
+
+.scrollArea {
+  height: 77vh;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .scrollArea {
+    height: auto;
+    max-height: none;
+  }
+
+  .table {
+    min-width: 100% !important;
+    font-size: 0.85rem;
+  }
+
+  .table input,
+  .table select {
+    font-size: 0.85rem;
+    padding: 4px;
+    width: 100%;
+  }
+
+  .buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .buttonGroup button {
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}

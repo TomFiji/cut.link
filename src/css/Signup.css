@@ -12,6 +12,13 @@
     padding: 0;
 }
 
+.body{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .sign-up-div{
     font-family: Poppins, Segoe UI, sans-serif;
@@ -19,9 +26,9 @@
     color: var(--text-color);
     text-align: center;
     background-color: var(--base-color);
-    height: 70vh;
-    padding: 10px;
-    border-radius: 0 20px 20px 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,29 +37,35 @@
 
 .logo{
     display: block;
-    width: 20vw;
-    margin: 0 auto;
+    width: 150px;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    align-self: center;
 }
 
 .sign-up-div h1{
     font-size: 3rem;
     font-weight: 900;
     text-transform: uppercase;
+    align-self: center;
 }
 
 .sign-up-div form{
+    width: 100%;
+    max-width: 900px;
     margin-top: 20px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 10px;
 }
 
 .sign-up-div form>div{
-    width: 50vw;
+    width: 100%;
+    max-width: 800px;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
 }
 
 .sign-up-div form label{
@@ -81,6 +94,7 @@
     flex-grow: 1;
     min-width: 0;
     height: 50px;
+    width: 100%;
     padding: 1em;
     font: inherit;
     border-radius: 0 10px 10px 0;
@@ -106,6 +120,8 @@
 
 .sign-up-div form button{
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     border: none;
     border-radius: 1000px;
     padding: .85em 4em;
@@ -134,4 +150,5 @@
 
 .sign-up-div #errors{
     color: red;
+    text-align: center;
 }

@@ -63,6 +63,34 @@ app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
     }
 })
 
+app.get('/api/clicks', authenticateUser, async(req, res) =>{
+    try{
+        const {data, error } = await supabase
+            .from('clicks')
+            .select('*')
+        if (error) { throw error || "Error getting clicks information"}
+        res.json(data)    
+    }catch(error){
+        console.error('Error getting all clicks: ', error);
+        res.status(500).json({ error: 'Database error' })
+    }
+})
+
+app.get('/api/urls/allUrls', authenticateUser, async(req, res) =>{
+    try{
+        const { data, error } = await supabase
+            .from('links')
+            .select('*')
+            .eq('user_id', req.user.id)
+        if (error) { throw error || "Error getting your urls"}
+        res.json(data)
+        
+    }catch(error){
+        console.error('Error getting all your urls: ', error);
+        res.status(500).json({ error: 'Database error' })
+    }
+})
+
 app.get('/:shortCode', async(req, res) => {
     const { shortCode } = req.params;
     try{
@@ -83,21 +111,6 @@ app.get('/:shortCode', async(req, res) => {
         res.redirect(302, data.long_url)
     }catch(error){
         console.error('Error get the long url: ', error);
-        res.status(500).json({ error: 'Database error' })
-    }
-})
-
-app.get('/api/urls/allUrls', authenticateUser, async(req, res) =>{
-    try{
-        const { data, error } = await supabase
-            .from('links')
-            .select('*')
-            .eq('user_id', req.user.id)
-        if (error) { throw error || "Error getting your urls"}
-        res.json(data)
-        
-    }catch(error){
-        console.error('Error getting all your expenses: ', error);
         res.status(500).json({ error: 'Database error' })
     }
 })

@@ -47,7 +47,6 @@ function UserUrlsTable(){
 
     return(
     <>
-    <h1> Your Links </h1>
     <br />  
     <ScrollArea className={classes.scrollArea} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
         <Table miw={700} className={classes.table}>

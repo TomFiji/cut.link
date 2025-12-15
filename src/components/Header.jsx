@@ -18,7 +18,7 @@ function Header() {
     const [isAdmin, setIsAdmin] = useState(null)
 
     const navigate = useNavigate()
-    const admin_id = process.env.VITE_ADMIN_ID;
+    const admin_id = import.meta.env.VITE_ADMIN_ID;
 
     async function signOut() {
     const { error } = await supabase.auth.signOut()
@@ -60,21 +60,6 @@ function Header() {
     }
   
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      data-active={active === link.link || undefined}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-      }}
-    >
-      {link.label}
-    </a>
-  ));
-
   useEffect(() => {
         checkSignedIn();
     }, [])
@@ -84,43 +69,90 @@ function Header() {
       <Container size="md" className={classes.inner}>
         <Group gap={5} visibleFrom="xs">
           <a
-                key='Home'
+                key='home'
                 href='/'
                 className={classes.link}
                 data-active={active === '/' || undefined}
                 onClick={(event) => {
                     event.preventDefault();
                     setActive('/');
+                    navigate('/');
                 }}
                 >
                 {'Home'}
             </a>
-             <a
-                key={link.label}
-                href={link.link}
+            {isSignedIn === true && (
+            <a
+                key='your-links'
+                href='/all-urls'
                 className={classes.link}
-                data-active={active === link.link || undefined}
+                data-active={active === '/all-urls' || undefined}
                 onClick={(event) => {
                     event.preventDefault();
-                    setActive(link.link);
+                    setActive('/all-urls');
+                    navigate('/all-urls');
                 }}
                 >
-                {link.label}
-            </a>
-             <a
-                key={link.label}
-                href={link.link}
+                {'Your Links'}
+            </a> )}
+            {isAdmin === true && (
+            <a
+                key='admin'
+                href='/admin'
                 className={classes.link}
-                data-active={active === link.link || undefined}
+                data-active={active === '/admin' || undefined}
                 onClick={(event) => {
                     event.preventDefault();
-                    setActive(link.link);
+                    setActive('/admin');
+                    navigate('/admin');
                 }}
                 >
-                {link.label}
-            </a>
+                {'Admin'}
+            </a> )}
         </Group>
-
+        <Group className={classes.signInOutButton}>
+            {isSignedIn === true && (
+              <a
+              key='logout-button'
+              className={classes.buttonLink}
+              onClick={(event) => {
+                  event.preventDefault();
+                  signOut()
+                  navigate('/admin');
+              }}
+              >
+              {'Log out'}
+              </a>
+            )}
+            {isSignedIn === false && (
+              <>
+              <a
+                key='sign-up'
+                href='/signup'
+                className={classes.buttonLink}
+                onClick={(event) => {
+                    event.preventDefault();
+                    setActive('/signup');
+                    navigate('/signup');
+                }}
+                >
+                {'Sign Up'}
+              </a>
+              <a
+                key='log-in'
+                href='/signin'
+                className={classes.buttonLink}
+                onClick={(event) => {
+                    event.preventDefault();
+                    setActive('/signin');
+                    navigate('/signin');
+                }}
+                >
+                {'Log in'}
+              </a>
+              </>
+            )}
+        </Group>
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>
     </header>

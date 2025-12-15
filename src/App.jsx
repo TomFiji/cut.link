@@ -17,7 +17,7 @@ function App() {
   const location = useLocation();
   
   //Pages where navbar should be hidden
-  const noShowHeaderRoutes = ['/signup', '/signin', '/verify-email', '/error', '/forgot-password', '/confirm-passwords']
+  const noShowHeaderRoutes = ['/verify-email', '/error', '/forgot-password', '/confirm-passwords']
   const shouldShowHeader = !noShowHeaderRoutes.includes(location.pathname);
   return (
     <MantineProvider>

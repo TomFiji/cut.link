@@ -1,7 +1,7 @@
 .header {
   height: 56px;
   margin-bottom: 120px;
-  background-color: var(--mantine-color-body);
+  background-color: #dadada;
   border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   position: fixed;
   top: 0;
@@ -14,7 +14,7 @@
 .inner {
   height: 56px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-width: 100% !important;
   padding: 0 20px;
@@ -37,5 +37,29 @@
   [data-mantine-color-scheme] &[data-active] {
     background-color: var(--mantine-color-blue-filled);
     color: var(--mantine-color-white);
+  }
+}
+
+.signInOutButton {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.buttonLink {
+  display: block;
+  line-height: 1;
+  padding: 8px 16px;
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: var(--mantine-color-white);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  background-color: var(--mantine-color-blue-filled);
+  cursor: pointer;
+  border: none;
+
+  @mixin hover {
+    background-color: var(--mantine-color-blue-6);
   }
 }

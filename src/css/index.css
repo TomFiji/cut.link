@@ -10,9 +10,11 @@
 
   color-scheme: light dark;
   color: black;
-  background-color: #EFECE3;
+  --base-color: #EFECE3;
+  background-color: var(--base-color);
   --accent-color: #4A70A9;
   --input-color: #8FABD4;
+  --text-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -63,8 +65,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -95,8 +95,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--text-color);
+    background-color: var(--base-color);
   }
   a:hover {
     color: #747bff;

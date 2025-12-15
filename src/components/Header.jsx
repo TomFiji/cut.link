@@ -61,7 +61,25 @@ function Header() {
   
 
   useEffect(() => {
+        // Check auth state on mount
         checkSignedIn();
+
+        // Listen for auth state changes (login, logout, signup)
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log("Auth state changed:", event);
+            if (session?.user) {
+                setIsSignedIn(true);
+                checkIfAdmin(session.user);
+            } else {
+                setIsSignedIn(false);
+                setIsAdmin(false);
+            }
+        });
+
+        // Cleanup listener on unmount
+        return () => {
+            authListener?.subscription?.unsubscribe();
+        };
     }, [])
 
   return (

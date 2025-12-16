@@ -25,23 +25,28 @@ function encodeBase62(n){
         return result
     }
 
-app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
-    const { long_url } = req.body
-
+app.post('/api/urls/shorten', async(req, res) =>{
+    const { long_url, description } = req.body
     if (!long_url){
         return res.status(400).json({ error: "Must input a url" })
     }
+    let desc = null
+    if (description){desc=description}
+    let user_id = null
+    if (req.user?.id){user_id = req.user.id}
 
     try{
         const { data, error } = await supabase
             .from("links")
             .insert({
-                user_id: req.user.id,
+                user_id: user_id,
                 long_url: long_url,
+                description: desc,
             })
             .select()
             .single()
-        if (error) { throw error }
+        console.log("Data: ", data)    
+        if (error) { console.log("Error: ", error)}
         const id = data.id;
         const shortCode = encodeBase62(id)
         const shortUrl = `${process.env.VITE_API_URL}/${shortCode}`
@@ -54,7 +59,7 @@ app.post('/api/urls/shorten', authenticateUser, async(req, res) =>{
             .eq('id', id)
             .select()
             .single()
-        if (updateError) throw updateError
+        if (updateError) { console.log("Error: ", updateError)}
 
         res.status(201).json(updatedData)
     }catch(error){

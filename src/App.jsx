@@ -6,9 +6,12 @@ import VerifyEmailPage from './pages/VerifyEmail';
 import ForgotPasswordPage from './pages/ForgotPassword';
 import ConfirmPasswordsPage from './pages/ConfirmPasswords';
 import AllUrlsPage from './pages/AllUrls';
+import AdminPage from './pages/AdminPage';
 import Header from './components/Header'
 import {Routes, Route, useLocation} from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
+import AdminRoute from './components/AdminRoute';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 
@@ -31,7 +34,8 @@ function App() {
             <Route path="/verify-email" element={<VerifyEmailPage />}/>
             <Route path="/forgot-password" element={<ForgotPasswordPage />}/>
             <Route path="/confirm-passwords" element={<ProtectedRoute>{<ConfirmPasswordsPage />}</ProtectedRoute>}/>
-            <Route path="/all-urls" element={<ProtectedRoute>{<AllUrlsPage />}</ProtectedRoute>}  />
+            <Route path="/all-urls" element={<AuthenticatedRoute>{<AllUrlsPage />}</AuthenticatedRoute>}  />
+            <Route path="/admin" element={<AdminRoute>{<AdminPage />}</AdminRoute>}/>
           </Routes>
         </main>
       </div>

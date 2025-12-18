@@ -35,11 +35,18 @@ app.post('/api/urls/shorten', async(req, res) =>{
     let desc = null
     if (description){desc=description}
     let user_id = null
+    let token = null
+    if (req.headers?.authorization){
+        const authHeader = req.headers.authorization;
+        token = authHeader.split('Bearer ')[1];
+    }
     
 
     try{
-        const { data: { user },  } = await supabase.auth.getUser()
-        if(!error && user){user_id=user.id}
+        const { data: { user }, error: authError } = await supabase.auth.getUser(token)
+        if (!authError && user) { user_id = user.id }
+        else if(authError){throw authError}
+    
         const { data, error } = await supabase
             .from("links")
             .insert({

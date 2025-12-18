@@ -61,7 +61,7 @@ function Admin() {
                 <Table.Th>User Agent</Table.Th>
                 <Table.Th>Referrer</Table.Th>
                 <Table.Th>IP Address</Table.Th>
-                <Table.Th>Browswer</Table.Th>
+                <Table.Th>Browser</Table.Th>
                 <Table.Th>Device Type</Table.Th>
                 <Table.Th>Operating System</Table.Th>
                 <Table.Th>Country</Table.Th>

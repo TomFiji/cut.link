@@ -46,16 +46,25 @@ function Home() {
             <h1><img src={cutlinkLogo}></img></h1>
             <label className="url-input-label" for="url-input">Enter the link you'd like to shorten: </label>
             <form className='url-form'>
-                
+                <div className='url-input-row'>
+                    <input
+                        type="url"
+                        className="url-input"
+                        id='url-input'
+                        onChange={handleChange}
+                        autoComplete="off"
+                    />
+                    <button type='button' onClick={convertUrl} className='convert-button'>Convert</button>
+                </div>
+
                 <input
-                    type="url"
-                    className="url-input"
-                    id='url-input'
-                    onChange={handleChange}
+                    type="text"
+                    className="description-input"
+                    id='description-input'
+                    placeholder="Description (optional)"
+                    onChange={handleDescriptionChange}
                     autoComplete="off"
                 />
-                
-                <button type='button' onClick={convertUrl} className='convert-button'>Convert</button>
             </form>
             <output id='short-url'>{shortUrl && <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>}</output>
         </div>

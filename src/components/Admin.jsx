@@ -31,7 +31,7 @@ function Admin() {
 
     const rows = clicks.map((element) => (
     <Table.Tr key={element.id}>
-        <Table.Td><a href={ `localhost:5000/${element.url_id}` } target="_blank" rel="noopener noreferrer">localhost:5000/{element.url_id}</a></Table.Td>
+        <Table.Td><a href={ `${import.meta.env.VITE_API_URL}/${element.url_id}` } target="_blank" rel="noopener noreferrer">{import.meta.env.VITE_API_URL}/{element.url_id}</a></Table.Td>
         <Table.Td>{format(new Date(element.clicked_at), 'MM/dd/yyyy')}</Table.Td>
         <Table.Td>{element.user_agent}</Table.Td>
         <Table.Td>{element.referrer}</Table.Td>

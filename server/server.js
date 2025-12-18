@@ -8,10 +8,12 @@ import logClick from "./utils/logClick.js";
 const app = express()
 const PORT = process.env.PORT || 5000
 
-app.use(cors([
-    "http://localhost:5000",
-    "http://localhost:5173"
-]))
+app.use(cors({
+    origin: [
+        "http://localhost:5000",
+        "http://localhost:5173"
+    ]
+}))
 app.use(express.json());
 
 function encodeBase62(n){
@@ -33,9 +35,11 @@ app.post('/api/urls/shorten', async(req, res) =>{
     let desc = null
     if (description){desc=description}
     let user_id = null
-    if (req.user?.id){user_id = req.user.id}
+    
 
     try{
+        const { data: { user },  } = await supabase.auth.getUser()
+        if(!error && user){user_id=user.id}
         const { data, error } = await supabase
             .from("links")
             .insert({

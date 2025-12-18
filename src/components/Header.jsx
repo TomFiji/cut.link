@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Burger, Container, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../services/supabase'
 import classes from '../css/HeaderSimple.module.css';
 
@@ -13,7 +13,8 @@ const links = [
 
 function Header() {
     const [opened, { toggle }] = useDisclosure(false);
-    const [active, setActive] = useState(links[0].link);
+    const location = useLocation();
+    const [active, setActive] = useState(location.pathname);
     const [isSignedIn, setIsSignedIn] = useState(null)
     const [isAdmin, setIsAdmin] = useState(null)
 
@@ -81,6 +82,11 @@ function Header() {
             authListener?.subscription?.unsubscribe();
         };
     }, [])
+
+    useEffect(() => {
+        // Update active state when route changes
+        setActive(location.pathname);
+    }, [location.pathname])
 
   return (
     <header className={classes.header}>

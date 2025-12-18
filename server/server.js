@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000
 
 app.use(cors({
     origin: [
-        "http://localhost:5000",
+        "http://localhost:5001",
         "http://localhost:5173"
     ]
 }))
@@ -45,7 +45,6 @@ app.post('/api/urls/shorten', async(req, res) =>{
     try{
         const { data: { user }, error: authError } = await supabase.auth.getUser(token)
         if (!authError && user) { user_id = user.id }
-        else if(authError){throw authError}
     
         const { data, error } = await supabase
             .from("links")

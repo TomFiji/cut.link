@@ -83,7 +83,7 @@ function Signup() {
         }
         if (data.user){
             (console.log("This is supposed to lead to /verify-email"))
-            navigate('/verify-email')
+            navigate('/')
         }
     
         

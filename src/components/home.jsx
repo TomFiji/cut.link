@@ -36,6 +36,8 @@ function Home() {
             const data = await response.json();
             console.log("Data: ", data)
             setShortUrl(data.short_url)
+            setLongUrl("")
+            setDescription("")
         }catch(error){
             console.error('Error shortening url: ', error);
         }
@@ -51,6 +53,7 @@ function Home() {
                         type="url"
                         className="url-input"
                         id='url-input'
+                        value={longUrl}
                         onChange={handleChange}
                         autoComplete="off"
                     />
@@ -62,6 +65,7 @@ function Home() {
                     className="description-input"
                     id='description-input'
                     placeholder="Description (optional)"
+                    value={description}
                     onChange={handleDescriptionChange}
                     autoComplete="off"
                 />

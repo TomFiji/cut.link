@@ -93,6 +93,12 @@ img{
     border-color: var(--accent-color);
 }
 
+.url-input::placeholder,
+.description-input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+}
+
 img{
     width: 500px;
     margin: 0;
@@ -103,9 +109,9 @@ img{
 }
 
 #short-url:not(:empty){
-    width: 25vw;
+    width: 15vw;
     height: 50px;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
     border-radius: 10px;
     border: 2px solid var(--input-color);

@@ -33,15 +33,15 @@ function Admin() {
     <Table.Tr key={element.id}>
         <Table.Td><a href={ `${import.meta.env.VITE_API_URL}/${element.url_id}` } target="_blank" rel="noopener noreferrer">{import.meta.env.VITE_API_URL}/{element.url_id}</a></Table.Td>
         <Table.Td>{format(new Date(element.clicked_at), 'MM/dd/yyyy')}</Table.Td>
-        <Table.Td>{element.user_agent}</Table.Td>
-        <Table.Td>{element.referrer}</Table.Td>
-        <Table.Td>{element.ip_address}</Table.Td>
-        <Table.Td>{element.browser}</Table.Td>
-        <Table.Td>{element.device_type}</Table.Td>
-        <Table.Td>{element.os}</Table.Td>
-        <Table.Td>{element.country}:{'N/A'}</Table.Td>
-        <Table.Td>{element.city}</Table.Td>
-        <Table.Td>{element.is_bot}</Table.Td>
+        <Table.Td>{element.user_agent ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.referrer ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.ip_address ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.browser ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.device_type ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.os ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.country ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.city ?? 'N/A'}</Table.Td>
+        <Table.Td>{element.is_bot == null ? 'N/A' : element.is_bot ? 'Yes' : 'No'}</Table.Td>
     </Table.Tr>
     ));
 
